@@ -3,20 +3,19 @@ import { z } from "zod";
 
 const step1 = createStep({
   id: "step-1",
-  description: "passes value from input to agent",
   inputSchema: z.object({
-    city: z.string()
+    input: z.string()
   }),
   outputSchema: z.object({
-    facts: z.string()
+    output: z.string()
   }),
   execute: async ({ inputData, mastra }) => {
-    const { city } = inputData;
+    const { input } = inputData;
 
     const logger = mastra.getLogger();
 
-    const agent = mastra.getAgent("cityAgent");
-    const response = await agent.generate(`Create an interesting fact about ${city}`);
+    const agent = mastra.getAgent("testAgent");
+    const response = await agent.generate(`Create an interesting fact about ${input}`);
 
     if (!agent) {
       logger.error("This is an error log");
@@ -25,18 +24,18 @@ const step1 = createStep({
     logger.info("This is an info log");
 
     return {
-      facts: response.text
+      output: response.text
     };
   }
 });
 
-export const callAgent = createWorkflow({
-  id: "agent-workflow",
+export const testWorkflow = createWorkflow({
+  id: "test-workflow",
   inputSchema: z.object({
-    city: z.string()
+    input: z.string()
   }),
   outputSchema: z.object({
-    facts: z.string()
+    output: z.string()
   })
 })
   .then(step1)
