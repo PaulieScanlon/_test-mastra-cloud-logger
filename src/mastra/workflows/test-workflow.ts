@@ -14,7 +14,7 @@ const step1 = createStep({
 
     const logger = mastra.getLogger();
 
-    const agent = mastra.getAgent("testAgents");
+    const agent = mastra.getAgent("testAgent");
 
     if (!agent) {
       logger.error("This is an error log");
