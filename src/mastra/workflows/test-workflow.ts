@@ -12,18 +12,18 @@ const step1 = createStep({
   execute: async ({ inputData, mastra }) => {
     const { input } = inputData;
 
-    const logger = mastra.getLogger();
+    // const logger = mastra.getLogger();
 
     const agent = mastra.getAgent("testAgent");
 
     if (!agent) {
-      logger.error("This is an error log");
+      // logger.error("This is an error log");
       return { output: "Agent not found" };
     }
 
     const response = await agent.generate(`Create an interesting fact about ${input}`);
 
-    logger.info("This is an info log");
+    // logger.info("This is an info log");
 
     return {
       output: response.text
