@@ -17,13 +17,13 @@ const step1 = createStep({
     const agent = mastra.getAgent("testAgent");
 
     if (!agent) {
-      logger.error("This is an error log");
+      logger.error("workflow error log");
       return { output: "Agent not found" };
     }
 
     const response = await agent.generate(`Create an interesting fact about ${input}`);
 
-    logger.info("This is an info log", { agent: agent });
+    logger.info("workflow info log");
 
     return {
       output: response.text
